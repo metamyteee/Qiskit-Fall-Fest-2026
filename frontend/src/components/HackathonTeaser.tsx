@@ -20,8 +20,8 @@ export default function HackathonTeaser() {
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-mist-300">
                   Open to beginners and experienced hackers alike. Form a team of up to four and
-                  ship a working quantum project - online prep on Oct 8-9, the challenge itself
-                  on Oct 10 at IIT Indore.
+                  ship a working quantum project - online prep on Oct 15-16, the challenge itself
+                  on Oct 17 at IIT Indore.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link href={site.hackathonUrl} className="btn-primary">

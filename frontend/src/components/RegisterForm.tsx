@@ -9,10 +9,11 @@ type FormState = {
   phone: string;
   institution: string;
   yearOfStudy: string;
-  attendanceMode: "in-person" | "online";
+  attendanceMode: "in-person" | "online" | "both";
   experienceLevel: "beginner" | "intermediate" | "advanced";
   interests: string[];
   hearAboutUs: string;
+  hpField: string;
 };
 
 const initialState: FormState = {
@@ -25,6 +26,7 @@ const initialState: FormState = {
   experienceLevel: "beginner",
   interests: [],
   hearAboutUs: "",
+  hpField: "",
 };
 
 const interestOptions = [
@@ -86,6 +88,7 @@ export default function RegisterForm() {
         experienceLevel: form.experienceLevel,
         interests: form.interests,
         hearAboutUs: form.hearAboutUs.trim() || undefined,
+        hpField: form.hpField,
       });
       setStatus("success");
     } catch (err) {
@@ -100,15 +103,15 @@ export default function RegisterForm() {
         <p className="font-mono text-xs text-bloom-400">REGISTRATION CONFIRMED</p>
         <h2 className="mt-4 font-display text-3xl text-mist-100">You&rsquo;re on the list.</h2>
         <p className="mx-auto mt-3 max-w-sm text-sm text-mist-500">
-          We&rsquo;ve saved your spot for Qiskit Fall Fest 2026. Check your email for confirmation
-          and event updates closer to the date.
+          We&rsquo;ve saved your spot for Qiskit Fall Fest 2026. Keep an eye on your inbox and our
+          socials for event updates closer to the date.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="card space-y-8 p-6 sm:p-10">
+    <form onSubmit={handleSubmit} noValidate className="card relative space-y-8 p-6 sm:p-10">
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="fullName" className="field-label">Full name</label>
@@ -185,6 +188,7 @@ export default function RegisterForm() {
           >
             <option value="in-person">In person, at IIT Indore</option>
             <option value="online">Online</option>
+            <option value="both">Both (online + in person)</option>
           </select>
         </div>
       </div>
@@ -242,6 +246,20 @@ export default function RegisterForm() {
           value={form.hearAboutUs}
           onChange={(e) => update("hearAboutUs", e.target.value)}
           placeholder="Instagram, a friend, club email..."
+        />
+      </div>
+
+      {/* Honeypot: hidden from people, but bots fill it in. Must stay empty. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0">
+        <label htmlFor="hpField">Leave this field empty</label>
+        <input
+          id="hpField"
+          name="hpField"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.hpField}
+          onChange={(e) => update("hpField", e.target.value)}
         />
       </div>
 

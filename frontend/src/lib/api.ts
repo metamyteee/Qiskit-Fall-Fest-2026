@@ -1,5 +1,5 @@
 // Thin client for the NestJS backend. All form submissions go through here
-// rather than talking to Supabase directly from the browser.
+// rather than writing anything directly from the browser.
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
@@ -36,17 +36,17 @@ export type RegistrationPayload = {
   phone: string;
   institution: string;
   yearOfStudy: string;
-  attendanceMode: "in-person" | "online";
+  attendanceMode: "in-person" | "online" | "both";
   experienceLevel: "beginner" | "intermediate" | "advanced";
   interests: string[];
   hearAboutUs?: string;
+  hpField?: string;
 };
 
 export type HackathonRegistrationPayload = {
   teamName: string;
   track?: string;
   attendanceMode: "in-person" | "online";
-  problemStatement?: string;
   leader: {
     fullName: string;
     email: string;
@@ -60,6 +60,7 @@ export type HackathonRegistrationPayload = {
   }[];
   githubUrl?: string;
   agreedToRules: boolean;
+  hpField?: string;
 };
 
 export function submitRegistration(payload: RegistrationPayload) {
