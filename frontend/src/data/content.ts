@@ -8,8 +8,8 @@ export const site = {
   tagline: "Where minds meet on the cloud.",
   description:
     "A student-led quantum computing festival by QC IITI — hands-on Qiskit workshops, industry talks, real networking, and a beginner-friendly hackathon. No prior quantum experience required.",
-  dates: "Oct 8-10, 2026",
-  location: "Online (Oct 8-9) + IIT Indore campus (Oct 10)",
+  dates: "Oct 15-17, 2026",
+  location: "Online (Oct 15-16) + IIT Indore campus (Oct 17)",
   registerUrl: "/register/",
   hackathonUrl: "/hackathon/",
   socials: {
@@ -64,7 +64,7 @@ export type ProgramDay = {
 export const program: ProgramDay[] = [
   {
     day: "Day 1",
-    date: "Thursday, Oct 8",
+    date: "Thursday, Oct 15",
     mode: "Online",
     sessions: [
       { time: "6:00 - 6:45 PM", title: "Speaker session I", track: "Talk" },
@@ -74,7 +74,7 @@ export const program: ProgramDay[] = [
   },
   {
     day: "Day 2",
-    date: "Friday, Oct 9",
+    date: "Friday, Oct 16",
     mode: "Online",
     sessions: [
       { time: "6:00 - 6:45 PM", title: "Speaker session I", track: "Talk" },
@@ -84,7 +84,7 @@ export const program: ProgramDay[] = [
   },
   {
     day: "Day 3",
-    date: "Saturday, Oct 10",
+    date: "Saturday, Oct 17",
     mode: "Offline",
     tentative: true,
     sessions: [
@@ -112,7 +112,7 @@ export const speakers: Speaker[] = [
 
 export const hackathonInfo = {
   status: "Challenge & problem statements drop soon",
-  body: "We're finalizing the challenge for this year's hackathon. Register now to lock your spot - full problem statements and rules will be shared with registered teams before Oct 10.",
+  body: "We're finalizing the challenge for this year's hackathon. Register now to lock your spot - full problem statements and rules will be shared with registered teams before Oct 17.",
   prizePool: "\u20B924k",
   prizeNote: "combined across online and offline, and growing as more sponsors come on board.",
 };
@@ -135,10 +135,10 @@ export const faqs = [
   },
   {
     q: "Can I join online?",
-    a: "Yes. Day 1 and Day 2 (Oct 8-9) are fully online with speaker sessions and an interactive session each evening. Day 3 (Oct 10) is on-campus at IIT Indore for the inauguration, talks, workshop, and the challenge.",
+    a: "Yes. Day 1 and Day 2 (Oct 15-16) are fully online with speaker sessions and an interactive session each evening. Day 3 (Oct 17) is on-campus at IIT Indore for the inauguration, talks, workshop, and the challenge.",
   },
   {
     q: "What should I bring?",
-    a: "A laptop with a browser - Qiskit runs in the cloud, so no local install is required. Student ID for on-campus check-in on Oct 10.",
+    a: "A laptop with a browser - Qiskit runs in the cloud, so no local install is required. Student ID for on-campus check-in on Oct 17.",
   },
 ];

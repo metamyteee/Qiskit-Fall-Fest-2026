@@ -8,7 +8,6 @@ type Member = { fullName: string; email: string; institution: string };
 type FormState = {
   teamName: string;
   attendanceMode: "in-person" | "online";
-  problemStatement: string;
   leaderName: string;
   leaderEmail: string;
   leaderPhone: string;
@@ -16,6 +15,7 @@ type FormState = {
   members: Member[];
   githubUrl: string;
   agreedToRules: boolean;
+  hpField: string;
 };
 
 const emptyMember: Member = { fullName: "", email: "", institution: "" };
@@ -23,7 +23,6 @@ const emptyMember: Member = { fullName: "", email: "", institution: "" };
 const initialState: FormState = {
   teamName: "",
   attendanceMode: "in-person",
-  problemStatement: "",
   leaderName: "",
   leaderEmail: "",
   leaderPhone: "",
@@ -31,6 +30,7 @@ const initialState: FormState = {
   members: [],
   githubUrl: "",
   agreedToRules: false,
+  hpField: "",
 };
 
 type Errors = Record<string, string>;
@@ -89,7 +89,6 @@ export default function HackathonForm() {
         teamName: form.teamName.trim(),
         track: "General",
         attendanceMode: form.attendanceMode,
-        problemStatement: form.problemStatement.trim() || undefined,
         leader: {
           fullName: form.leaderName.trim(),
           email: form.leaderEmail.trim(),
@@ -103,6 +102,7 @@ export default function HackathonForm() {
         })),
         githubUrl: form.githubUrl.trim() || undefined,
         agreedToRules: form.agreedToRules,
+        hpField: form.hpField,
       });
       setStatus("success");
     } catch (err) {
@@ -119,15 +119,15 @@ export default function HackathonForm() {
           &ldquo;{form.teamName}&rdquo; is in.
         </h2>
         <p className="mx-auto mt-3 max-w-sm text-sm text-mist-500">
-          We&rsquo;ve emailed the team leader a confirmation with your problem statement details.
-          See you at kickoff.
+          We&rsquo;ve saved your team. Problem statements and rules will be shared with the team
+          leader before the event. See you at kickoff.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="card space-y-10 p-6 sm:p-10">
+    <form onSubmit={handleSubmit} noValidate className="card relative space-y-10 p-6 sm:p-10">
       <fieldset className="space-y-6">
         <legend className="font-display text-xl text-mist-100">Team</legend>
         <div className="grid gap-6 sm:grid-cols-2">
@@ -168,19 +168,6 @@ export default function HackathonForm() {
               placeholder="https://github.com/your-team"
             />
           </div>
-        </div>
-
-        <div>
-          <label htmlFor="problemStatement" className="field-label">
-            What are you thinking of building? <span className="text-mist-500">(optional)</span>
-          </label>
-          <textarea
-            id="problemStatement"
-            className="field-input min-h-[100px] resize-y"
-            value={form.problemStatement}
-            onChange={(e) => update("problemStatement", e.target.value)}
-            placeholder="A rough idea is fine — you can change it at kickoff."
-          />
         </div>
       </fieldset>
 
@@ -310,6 +297,20 @@ export default function HackathonForm() {
         </span>
       </label>
       {errors.agreedToRules && <p className="field-error">{errors.agreedToRules}</p>}
+
+      {/* Honeypot: hidden from people, but bots fill it in. Must stay empty. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0">
+        <label htmlFor="hpField">Leave this field empty</label>
+        <input
+          id="hpField"
+          name="hpField"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.hpField}
+          onChange={(e) => update("hpField", e.target.value)}
+        />
+      </div>
 
       {serverError && (
         <p className="rounded-lg border border-bloom-500/30 bg-bloom-500/10 px-4 py-3 text-sm text-bloom-400">
