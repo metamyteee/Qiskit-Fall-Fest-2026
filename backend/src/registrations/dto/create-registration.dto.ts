@@ -33,8 +33,8 @@ export class CreateRegistrationDto {
   @MaxLength(60)
   yearOfStudy!: string;
 
-  @IsIn(["in-person", "online"])
-  attendanceMode!: "in-person" | "online";
+  @IsIn(["in-person", "online", "both"])
+  attendanceMode!: "in-person" | "online" | "both";
 
   @IsIn(["beginner", "intermediate", "advanced"])
   experienceLevel!: "beginner" | "intermediate" | "advanced";
