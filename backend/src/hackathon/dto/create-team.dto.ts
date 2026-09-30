@@ -85,4 +85,9 @@ export class CreateHackathonRegistrationDto {
 
   @IsBoolean()
   agreedToRules!: boolean;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  hpField?: string;
 }

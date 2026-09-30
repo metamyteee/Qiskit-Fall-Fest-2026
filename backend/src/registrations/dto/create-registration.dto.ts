@@ -48,4 +48,9 @@ export class CreateRegistrationDto {
   @IsString()
   @MaxLength(200)
   hearAboutUs?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  hpField?: string;
 }
